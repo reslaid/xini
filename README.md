@@ -31,10 +31,10 @@
     IniParser ini;
 
     const IniChar* filename = IniT("main.ini");
-	
+  
     if (!(ini >> filename)) {
-	    std::cout << "Error opening file" << std::endl;
-	    return -1;
+      std::cout << "Error opening file" << std::endl;
+      return -1;
     }
     ```
 
@@ -44,10 +44,10 @@
     IniParser ini;
 
     const IniChar* data = IniT("[section]\nvar=value");
-	
+  
     if (!(ini << data)) {
-        std::cout << "String loading error" << std::endl;
-        return -1;
+      std::cout << "String loading error" << std::endl;
+      return -1;
     }
     ```
 
@@ -88,6 +88,13 @@
 
     ```cpp
     ini.rem(IniT("section"), IniT("var"));
+    ```
+
+    - **Comparison of maps of two parsers**
+
+    ```cpp
+    // ini Identical to ini2 object
+    bool identical = ini == ini2;
     ```
 
     - **Deleting a section**

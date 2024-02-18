@@ -33,8 +33,8 @@
     const IniChar* filename = IniT("main.ini");
 	
     if (!(ini >> filename)) {
-	std::cout << "Error opening file" << std::endl;
-	return -1;
+	    std::cout << "Error opening file" << std::endl;
+	    return -1;
     }
     ```
 
@@ -46,8 +46,8 @@
     const IniChar* data = IniT("[section]\nvar=value");
 	
     if (!(ini << data)) {
-	    std::cout << "String loading error" << std::endl;
-	    return -1;
+        std::cout << "String loading error" << std::endl;
+        return -1;
     }
     ```
 

@@ -164,9 +164,8 @@ private:
 	 * pairs in the data map.
 	 *
 	 * @param content The content of the INI file.
-	 * @return True if the file was successfully parsed, false otherwise.
 	 */
-	bool parse_raw(const std::string& content) {
+	void parse_raw(const std::string& content) {
 		std::istringstream stringStream(content);
 
 		std::string line;
@@ -176,8 +175,6 @@ private:
 				continue;
 			}
 		}
-
-		return true;
 	}
 
 	/**
@@ -287,10 +284,9 @@ public:
 	 * This function parses an INI file and stores the key-value pairs in the data map.
 	 *
 	 * @param content The content of the INI file.
-	 * @return True if the file was successfully parsed, false otherwise.
 	 */
-	bool operator<<(const char* content) {
-		return this->parse_raw(content);
+	void operator<<(const char* content) {
+		this->parse_raw(content);
 	}
 
 	/**
@@ -458,9 +454,8 @@ private:
 	 * pairs in the data map.
 	 *
 	 * @param content The content of the INI file.
-	 * @return True if the file was successfully parsed, false otherwise.
 	 */
-	bool parse_raw(const std::wstring& content) {
+	void parse_raw(const std::wstring& content) {
 		std::wistringstream stringStream(content);
 
 		std::wstring line;
@@ -470,8 +465,6 @@ private:
 				continue;
 			}
 		}
-
-		return true;
 	}
 
 	/**
@@ -581,10 +574,9 @@ public:
 	 * This function parses an INI file and stores the key-value pairs in the data map.
 	 *
 	 * @param content The content of the INI file.
-	 * @return True if the file was successfully parsed, false otherwise.
 	 */
-	bool operator<<(const wchar_t* content) {
-		return this->parse_raw(content);
+	void operator<<(const wchar_t* content) {
+		this->parse_raw(content);
 	}
 
 	/**

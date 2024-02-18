@@ -34,8 +34,8 @@
 	
     if (!(ini >> filename)) {
         // Perhaps the file is open by another process or does not exist
-		std::cout << "Error opening file" << std::endl;
-		return -1;
+	std::cout << "Error opening file" << std::endl;
+	return -1;
     }
     ```
 
@@ -47,8 +47,8 @@
     const IniChar* data = IniT("[section]\nvar=value");
 	
     if (!(ini << data)) {
-		std::cout << "String loading error" << std::endl;
-		return -1;
+	std::cout << "String loading error" << std::endl;
+	return -1;
     }
     ```
 

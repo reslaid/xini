@@ -45,10 +45,7 @@
 
     const IniChar* data = IniT("[section]\nvar=value");
   
-    if (!(ini << data)) {
-      std::cout << "String loading error" << std::endl;
-      return -1;
-    }
+    ini << data;
     ```
 
 - **Working with Values**

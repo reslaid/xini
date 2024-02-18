@@ -1,6 +1,15 @@
 > # </[XIni](https://github.com/reslaid/xini.git)>
 > [![Version](https://img.shields.io/badge/version-0.1.0-orange.svg)](https://github.com/reslaid/xini.git) [![Commit activity](https://img.shields.io/github/commit-activity/m/reslaid/xini)](https://github.com/reslaid/xjson/commits) [![Last Commit](https://img.shields.io/github/last-commit/reslaid/xini/main)](https://github.com/reslaid/xini/commits)
 
+# **Dependencies**
+- [**Git**](https://git-scm.com/downloads)
+
+# Installing
+- **Installation from repository**
+    ```bash
+    git clone https://github.com/reslaid/xini.git
+    ```
+
 # Docs
 
 - **Inclusion in the project**

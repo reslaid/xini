@@ -384,6 +384,18 @@ public:
 		return this->data;
 	}
 
+	/**
+	 * @brief Conversion operator to IniMap (std::map<std::string, std::map<std::string, std::string>>).
+	 *
+	 * This conversion operator allows the IniParser class to be converted to a std::map<std::string, std::map<std::string, std::string>>.
+	 * It returns the current data map of the IniParser object.
+	 *
+	 * @return The current data map of the IniParser object.
+	 */
+	operator std::map<std::string, std::map<std::string, std::string>>() {
+		return this->map();
+	}
+
 private:
 	std::map<std::string, std::map<std::string, std::string>> data;
 };
@@ -653,6 +665,14 @@ public:
 		return this->data;
 	}
 
+	/**
+	 * @brief Conversion operator to IniMap (std::map<std::wstring, std::map<std::wstring, std::wstring>>).
+	 *
+	 * This conversion operator allows the IniParser class to be converted to a std::map<std::wstring, std::map<std::wstring, std::wstring>>.
+	 * It returns the current data map of the IniParser object.
+	 *
+	 * @return The current data map of the IniParser object.
+	 */
 	operator std::map<std::wstring, std::map<std::wstring, std::wstring>>() {
 		return this->map();
 	}

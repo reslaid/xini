@@ -396,6 +396,19 @@ public:
 		return this->map();
 	}
 
+	/**
+	 * @brief Equality comparison operator for IniParserA.
+	 *
+	 * This operator compares the data map of the current IniParserW object with that of another IniParserW object.
+	 * It returns true if the data maps are equal, and false otherwise.
+	 *
+	 * @param parser2 The IniParserA object to compare.
+	 * @return True if the data maps are equal, false otherwise.
+	 */
+	bool operator==(IniParserA parser2) {
+		return parser2.data == this->data;
+	}
+
 private:
 	std::map<std::string, std::map<std::string, std::string>> data;
 };
@@ -675,6 +688,19 @@ public:
 	 */
 	operator std::map<std::wstring, std::map<std::wstring, std::wstring>>() {
 		return this->map();
+	}
+
+	/**
+	 * @brief Equality comparison operator for IniParserW.
+	 *
+	 * This operator compares the data map of the current IniParserW object with that of another IniParserW object.
+	 * It returns true if the data maps are equal, and false otherwise.
+	 *
+	 * @param parser2 The IniParserW object to compare.
+	 * @return True if the data maps are equal, false otherwise.
+	 */
+	bool operator==(IniParserW parser2) {
+		return parser2.data == this->data;
 	}
 
 private:

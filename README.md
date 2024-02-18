@@ -3,6 +3,11 @@
 
 # Docs
 
+- **Inclusion in the project**
+    ```cpp
+    #include "xini/parser.hpp"
+    ```
+
 - **Loading content**
     
     - **Creating an instance of a class**:

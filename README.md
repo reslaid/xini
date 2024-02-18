@@ -33,7 +33,6 @@
     const IniChar* filename = IniT("main.ini");
 	
     if (!(ini >> filename)) {
-        // Perhaps the file is open by another process or does not exist
 	std::cout << "Error opening file" << std::endl;
 	return -1;
     }

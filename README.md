@@ -5,6 +5,7 @@
 [![Last Commit](https://img.shields.io/github/last-commit/reslaid/xini/main)](https://github.com/reslaid/xini/commits)
 
 ## **Dependencies**
+
   [![Git](https://skillicons.dev/icons?i=git)](https://git-scm.com/downloads)
 
 ## Installing

@@ -1,5 +1,5 @@
 > # </[XIni](https://github.com/reslaid/xini.git)>
-> [![Version](https://img.shields.io/badge/version-0.1.2-orange.svg)](https://github.com/reslaid/xini.git) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4f58ee8f44234a3497ce62b646b1c899)](https://app.codacy.com/gh/reslaid/xini/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) [![Commit activity](https://img.shields.io/github/commit-activity/m/reslaid/xini)](https://github.com/reslaid/xjson/commits) [![Last Commit](https://img.shields.io/github/last-commit/reslaid/xini/main)](https://github.com/reslaid/xini/commits)
+> [![Version](https://img.shields.io/badge/version-0.1.0-orange.svg)](https://github.com/reslaid/xini.git) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4f58ee8f44234a3497ce62b646b1c899)](https://app.codacy.com/gh/reslaid/xini/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) [![Commit activity](https://img.shields.io/github/commit-activity/m/reslaid/xini)](https://github.com/reslaid/xjson/commits) [![Last Commit](https://img.shields.io/github/last-commit/reslaid/xini/main)](https://github.com/reslaid/xini/commits)
 
 # **Dependencies**
 - [**Git**](https://git-scm.com/downloads)
@@ -33,8 +33,8 @@
     const IniChar* filename = IniT("main.ini");
   
     if (!(ini >> filename)) {
-      std::cout << "Error opening file" << std::endl;
-      return -1;
+        std::cout << "Error opening file" << std::endl;
+        return -1;
     }
     ```
 
@@ -69,7 +69,7 @@
     IniString varValue;
 
     if (varExist) {
-        // ini.get<typename T>
+        // ini.get<typename __T__>
         varValue = ini.get<IniString>(IniT("section"), IniT("var"));
     }
     ```
@@ -77,7 +77,7 @@
     - **Setting the value**
 
     ```cpp
-    // ini.set<typename T>
+    // ini.set<typename __T__>
     ini.set<const IniChar*>(IniT("section"), IniT("var"), IniT("value"));
     ```
 

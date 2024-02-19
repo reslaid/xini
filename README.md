@@ -1,16 +1,17 @@
-> # </[XIni](https://github.com/reslaid/xini.git)>
-> [![Version](https://img.shields.io/badge/version-0.2.1-gren.svg)](https://github.com/reslaid/xini.git) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4f58ee8f44234a3497ce62b646b1c899)](https://app.codacy.com/gh/reslaid/xini/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) [![Commit activity](https://img.shields.io/github/commit-activity/m/reslaid/xini)](https://github.com/reslaid/xjson/commits) [![Last Commit](https://img.shields.io/github/last-commit/reslaid/xini/main)](https://github.com/reslaid/xini/commits)
+# </[XIni](https://github.com/reslaid/xini.git)>
 
-# **Dependencies**
+[![Version](https://img.shields.io/badge/version-0.2.1-gren.svg)](https://github.com/reslaid/xini.git) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4f58ee8f44234a3497ce62b646b1c899)](https://app.codacy.com/gh/reslaid/xini/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) [![Commit activity](https://img.shields.io/github/commit-activity/m/reslaid/xini)](https://github.com/reslaid/xjson/commits) [![Last Commit](https://img.shields.io/github/last-commit/reslaid/xini/main)](https://github.com/reslaid/xini/commits)
+
+## **Dependencies**
 - [**Git**](https://git-scm.com/downloads)
 
-# Installing
+## Installing
 - **Installation from repository**
     ```bash
     git clone https://github.com/reslaid/xini.git
     ```
 
-# Docs
+## Docs
 
 - **Inclusion in the project**
 

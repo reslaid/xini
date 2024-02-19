@@ -65,160 +65,159 @@
         ```
 
 - **Working with Values**
+  - **Checking the existence of a value**
 
-    - **Checking the existence of a value**
+      ```cpp
+      bool varExist = ini.exist(IniT("section"), IniT("var"));
+      ```
 
-        ```cpp
-        bool varExist = ini.exist(IniT("section"), IniT("var"));
-        ```
+  - **Checking the existence of a section**
 
-    - **Checking the existence of a section**
+      ```cpp
+      bool sectExist = ini.exist(IniT("section"));
+      ```
 
-        ```cpp
-        bool sectExist = ini.exist(IniT("section"));
-        ```
+  - **Getting value**
 
-    - **Getting value**
+      ```cpp
 
-        ```cpp
+      IniString varValue;
 
-        IniString varValue;
+      if (varExist) {
+          // ini.get<typename __T__>
+          varValue = ini.get<IniString>(IniT("section"), IniT("var"));
+      }
+      ```
 
-        if (varExist) {
-            // ini.get<typename __T__>
-            varValue = ini.get<IniString>(IniT("section"), IniT("var"));
-        }
-        ```
+  - **Setting the value**
 
-    - **Setting the value**
+      ```cpp
+      // ini.set<typename __T__>
+      ini.set<const IniChar*>(IniT("section"), IniT("var"), IniT("value"));
+      ```
 
-        ```cpp
-        // ini.set<typename __T__>
-        ini.set<const IniChar*>(IniT("section"), IniT("var"), IniT("value"));
-        ```
+  - **Delete a value**
 
-    - **Delete a value**
+      ```cpp
+      ini.rem(IniT("section"), IniT("var"));
+      ```
 
-        ```cpp
-        ini.rem(IniT("section"), IniT("var"));
-        ```
+  - **Comparison of maps of two parsers**
 
-    - **Comparison of maps of two parsers**
+      ```cpp
+      // ini Identical to ini2 object
+      bool identical = ini == ini2;
+      ```
 
-        ```cpp
-        // ini Identical to ini2 object
-        bool identical = ini == ini2;
-        ```
+  - **Deleting a section**
 
-    - **Deleting a section**
+      ```cpp
+      ini.rem(IniT("section"));
+      ```
 
-        ```cpp
-        ini.rem(IniT("section"));
-        ```
+  - **Confirmation of writing to a file**
 
-    - **Confirmation of writing to a file**
+      ```cpp
+      ini.commit();
+      ```
 
-        ```cpp
-        ini.commit();
-        ```
+  - **Getting sections and values ​​asstd::map**
 
-    - **Getting sections and values ​​as std::map**
+      ```cpp
+      auto map = (IniMap)ini;
+      // Or
+      auto map = ini.map();
+      ```
 
-        ```cpp
-        auto map = (IniMap)ini;
-        // Or
-        auto map = ini.map();
-        ```
+  - **Comparison of two maps from parsers**
 
-    - **Comparison of two maps from parsers**
+      ```cpp
+      bool identical = ini.map() == ini2.map();
+      ```
 
-        ```cpp
-        bool identical = ini.map() == ini2.map();
-        ```
+  - **Connecting two parsers together**
 
-    - **Connecting two parsers together**
+      ```cpp
+      IniParser mergedIni;
+      mergedIni = IniMerge(ini, ini2);
+      ```
 
-        ```cpp
-        IniParser mergedIni;
-        mergedIni = IniMerge(ini, ini2);
-        ```
+  - **Parsing an array**
 
-    - **Parsing an array**
+      ```cpp
+      std::vector<IniString> arr;
+      arr = IniArrayParse(ini.get<IniString>(IniT("section"), IniT("array")));
+      ```
 
-        ```cpp
-        std::vector<IniString> arr;
-        arr = IniArrayParse(ini.get<IniString>(IniT("section"), IniT("array")));
-        ```
+  - **Adding values ​​to an array**
 
-    - **Adding values ​​to an array**
+      ```cpp
+      arr.push_back(IniT("value"));
+      ```
 
-        ```cpp
-        arr.push_back(IniT("value"));
-        ```
+  - **Adding values ​​by index to an array**
 
-    - **Adding values ​​by index to an array**
+      ```cpp
+      const int INDEX = 0;
 
-        ```cpp
-        const int INDEX = 0;
+      arr.insert(arr.begin() + INDEX, IniT("value"));
+      ```
 
-        arr.insert(arr.begin() + INDEX, IniT("value"));
-        ```
+  - **Changing values ​​in an array**
 
-    - **Changing values ​​in an array**
+      ```cpp
+      const int INDEX = 0;
 
-        ```cpp
-        const int INDEX = 0;
+      arr[INDEX] = IniT("value");
+      ```
 
-        arr[INDEX] = IniT("value");
-        ```
+  - **Removing a value by its index in anarray**
 
-    - **Removing a value by its index in an array**
+      ```cpp
+      const int INDEX = 0;
+          
+      arr.erase(vec.begin() + INDEX);
+      ```
 
-        ```cpp
-        const int INDEX = 0;
-            
-        arr.erase(vec.begin() + INDEX);
-        ```
+  - **Getting the size of an array**
 
-    - **Getting the size of an array**
+      ```cpp
+      size_t arrSize = arr.size();
+      ```
 
-        ```cpp
-        size_t arrSize = arr.size();
-        ```
+  - **Recording changes to an array**
 
-    - **Recording changes to an array**
+      ```cpp
+      ini.set<IniString>(IniT("section"), IniT("array"), IniArrayToStr(arr));
+      ```
 
-        ```cpp
-        ini.set<IniString>(IniT("section"), IniT("array"), IniArrayToStr(arr));
-        ```
+  - **Dictionary parsing**
 
-    - **Dictionary parsing**
+      ```cpp
+      std::map<IniString, IniString> dict;
+      dict = IniDictParse(ini.get<IniString>(IniT("section"), IniT("section")));
+      ```
 
-        ```cpp
-        std::map<IniString, IniString> dict;
-        dict = IniDictParse(ini.get<IniString>(IniT("section"), IniT("section")));
-        ```
+  - **Changing/Adding values ​​in thedictionary**
 
-    - **Changing/Adding values ​​in the dictionary**
+      ```cpp
+      dict[IniT("variable1")] = IniT("value1");
+      ```
 
-        ```cpp
-        dict[IniT("variable1")] = IniT("value1");
-        ```
+  - **Deleting values ​​in a dictionary**
 
-    - **Deleting values ​​in a dictionary**
+      ```cpp
+      dict.erase(IniT("variable1"));
+      ```
 
-        ```cpp
-        dict.erase(IniT("variable1"));
-        ```
+  - **Getting the size of a dictionary**
 
-    - **Getting the size of a dictionary**
+      ```cpp
+      size_t dictSize = dict.size();
+      ```
 
-        ```cpp
-        size_t dictSize = dict.size();
-        ```
+  - **Recording changes to the dictionary**
 
-    - **Recording changes to the dictionary**
-
-        ```cpp
-        ini.set<IniString>(IniT("section"), IniT("dict"), IniDictToStr(dict));
-        ```
+      ```cpp
+      ini.set<IniString>(IniT("section"), IniT("dict"), IniDictToStr(dict));
+      ```

@@ -59,7 +59,8 @@
     ```cpp
     IniParser ini;
 
-    const IniChar* data = IniT("[section]\nvar=value\ndict={variable1: value1, variable2: value2}\narray=[value1, value2]");
+    const IniChar* data;
+    data = IniT("[section]\nvar=value\ndict={variable1: value1, variable2: value2}\narray=[value1, value2]");
   
     ini << data;
     ```

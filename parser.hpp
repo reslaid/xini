@@ -406,6 +406,17 @@ public:
         return parser2.data == this->data;
     }
 
+    /**
+     * @brief Load data from a map into the IniParserA object.
+     *
+     * This function loads data from a map into the IniParserA object. It replaces the current data in the object with the data from the provided map.
+     *
+     * @param map The map containing the data to be loaded.
+     */
+    void loadmap(std::map <std::string, std::map<std::string, std::string>> map) {
+        this->data = map;
+    }
+
 private:
     std::map<std::string, std::map<std::string, std::string>> data;
 };
@@ -694,6 +705,17 @@ public:
      */
     bool operator==(IniParserW parser2) {
         return parser2.data == this->data;
+    }
+
+    /**
+     * @brief Load data from a map into the IniParserW object.
+     *
+     * This function loads data from a map into the IniParserW object. It replaces the current data in the object with the data from the provided map.
+     *
+     * @param map The map containing the data to be loaded.
+     */
+    void loadmap(std::map <std::wstring, std::map<std::wstring, std::wstring>> map) {
+        this->data = map;
     }
 
 private:

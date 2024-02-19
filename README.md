@@ -1,4 +1,3 @@
-
 # </[XIni](https://github.com/reslaid/xini.git)>
 [![Version](https://img.shields.io/badge/version-0.2.1-gren.svg)](https://github.com/reslaid/xini.git) 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4f58ee8f44234a3497ce62b646b1c899)](https://app.codacy.com/gh/reslaid/xini/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
@@ -39,6 +38,7 @@
 
 - **Loading content**  
   - **Creating an instance of a class**
+
     ```cpp
     IniParser ini;
     ```

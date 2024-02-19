@@ -10,7 +10,6 @@
 
 
 ## Installing
-- **Installation from repository**
 
   ```bash
   git clone https://github.com/reslaid/xini.git

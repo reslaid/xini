@@ -1,11 +1,11 @@
-#ifndef					__IniParserUtils_Required_
-# define                    __IniParserUtils_Required_
+#pragma once
 
 #pragma region              includes
 
 #include                    <cstdarg>
 #include                    <locale>
 #include                    <codecvt>
+
 #include                    "parser.hpp"
 
 #pragma endregion
@@ -48,20 +48,7 @@
  * @param wmap The wide-character map to convert.
  * @return The corresponding ASCII map.
  */
-static std::map<std::string, std::map<std::string, std::string>> WMapToAMap(const std::map<std::wstring, std::map<std::wstring, std::wstring>>& wmap) {
-	std::map<std::string, std::map<std::string, std::string>> amap;
-	for (const auto& wsection : wmap) {
-		std::string asection(wsection.first.begin(), wsection.first.end());
-		std::map<std::string, std::string> ainnerMap;
-		for (const auto& wpair : wsection.second) {
-			std::string akey(wpair.first.begin(), wpair.first.end());
-			std::string avalue(wpair.second.begin(), wpair.second.end());
-			ainnerMap[akey] = avalue;
-		}
-		amap[asection] = ainnerMap;
-	}
-	return amap;
-}
+static std::map<std::string, std::map<std::string, std::string>> WMapToAMap(const std::map<std::wstring, std::map<std::wstring, std::wstring>>& wmap);
 
 /**
  * @brief Convert an ASCII map to a wide-character map.
@@ -71,20 +58,7 @@ static std::map<std::string, std::map<std::string, std::string>> WMapToAMap(cons
  * @param amap The ASCII map to convert.
  * @return The corresponding wide-character map.
  */
-static std::map<std::wstring, std::map<std::wstring, std::wstring>> AMapToWMap(const std::map<std::string, std::map<std::string, std::string>>& amap) {
-	std::map<std::wstring, std::map<std::wstring, std::wstring>> wmap;
-	for (const auto& asection : amap) {
-		std::wstring wsection(asection.first.begin(), asection.first.end());
-		std::map<std::wstring, std::wstring> winnerMap;
-		for (const auto& apair : asection.second) {
-			std::wstring wkey(apair.first.begin(), apair.first.end());
-			std::wstring wvalue(apair.second.begin(), apair.second.end());
-			winnerMap[wkey] = wvalue;
-		}
-		wmap[wsection] = winnerMap;
-	}
-	return wmap;
-}
+static std::map<std::wstring, std::map<std::wstring, std::wstring>> AMapToWMap(const std::map<std::string, std::map<std::string, std::string>>& amap);
 
 /**
  * @brief Convert an IniParserA object to an IniParserW object.
@@ -94,11 +68,7 @@ static std::map<std::wstring, std::map<std::wstring, std::wstring>> AMapToWMap(c
  * @param asciiParser The IniParserA object to convert.
  * @return The converted IniParserW object.
  */
-IniParserW ToIniParserW(IniParserA& asciiParser) {
-	IniParserW wideParser;
-	wideParser.loadmap(AMapToWMap(asciiParser.map()));
-	return wideParser;
-}
+IniParserW ToIniParserW(IniParserA& asciiParser);
 
 /**
  * @brief Convert an IniParserW object to an IniParserA object.
@@ -108,11 +78,7 @@ IniParserW ToIniParserW(IniParserA& asciiParser) {
  * @param wideParser The IniParserW object to convert.
  * @return The converted IniParserA object.
  */
-IniParserA ToIniParserA(IniParserW& wideParser) {
-	IniParserA asciiParser;
-	asciiParser.loadmap(WMapToAMap(wideParser.map()));
-	return asciiParser;
-}
+IniParserA ToIniParserA(IniParserW& wideParser);
 
 /**
  * @brief Merge multiple IniParserA objects into one.
@@ -124,25 +90,7 @@ IniParserA ToIniParserA(IniParserW& wideParser) {
  * @param ... Additional IniParserA objects to merge.
  * @return The merged IniParserA object.
  */
-IniParserA MergeIniParsersA(IniParserA parser1, IniParserA parser2, ...) {
-	IniParserA mergedParser = parser1;
-
-	va_list args;
-	va_start(args, parser2);
-	IniParserA* currentParser = &parser2;
-
-	while (currentParser != nullptr) {
-		for (const auto& section : currentParser->map()) {
-			for (const auto& pair : section.second) {
-				mergedParser.set(section.first.c_str(), pair.first.c_str(), pair.second);
-			}
-		}
-		currentParser = va_arg(args, IniParserA*);
-	}
-	va_end(args);
-
-	return mergedParser;
-}
+IniParserA MergeIniParsersA(IniParserA parser1, IniParserA parser2, ...);
 
 /**
  * @brief Merge multiple IniParserW objects into one.
@@ -154,24 +102,4 @@ IniParserA MergeIniParsersA(IniParserA parser1, IniParserA parser2, ...) {
  * @param ... Additional IniParserW objects to merge.
  * @return The merged IniParserW object.
  */
-IniParserW MergeIniParsersW(IniParserW parser1, IniParserW parser2, ...) {
-	IniParserW mergedParser = parser1;
-
-	va_list args;
-	va_start(args, parser2);
-	IniParserW* currentParser = &parser2;
-
-	while (currentParser != nullptr) {
-		for (const auto& section : currentParser->map()) {
-			for (const auto& pair : section.second) {
-				mergedParser.set(section.first.c_str(), pair.first.c_str(), pair.second);
-			}
-		}
-		currentParser = va_arg(args, IniParserW*);
-	}
-	va_end(args);
-
-	return mergedParser;
-}
-
-#endif
+IniParserW MergeIniParsersW(IniParserW parser1, IniParserW parser2, ...);

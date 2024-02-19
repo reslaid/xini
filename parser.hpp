@@ -4,12 +4,9 @@
 
 #pragma region              includes
 
-#include                    <iostream>
 #include                    <fstream>
 #include                    <sstream>
-#include                    <cctype>
 #include                    <map>
-#include                    <string>
 
 #pragma endregion
 

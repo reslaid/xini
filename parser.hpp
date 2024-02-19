@@ -410,7 +410,7 @@ public:
      *
      * @param map The map containing the data to be loaded.
      */
-    void loadmap(std::map <std::string, std::map<std::string, std::string>> map) {
+    void loadmap(const std::map <std::string, std::map<std::string, std::string>>& map) {
         this->data = map;
     }
 
@@ -711,7 +711,7 @@ public:
      *
      * @param map The map containing the data to be loaded.
      */
-    void loadmap(std::map <std::wstring, std::map<std::wstring, std::wstring>> map) {
+    void loadmap(const std::map <std::wstring, std::map<std::wstring, std::wstring>>& map) {
         this->data = map;
     }
 

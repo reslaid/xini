@@ -121,7 +121,7 @@
   - **Confirmation of writing to a file**
 
     ```cpp
-    ini.commit();
+    ini.commit(filename);
     ```
 
   - **Getting sections and values ​​asstd::map**

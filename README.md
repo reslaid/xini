@@ -150,6 +150,9 @@
     ```cpp
     std::vector<IniString> arr;
     arr = IniArrayParse(ini.get<IniString>(IniT("section"), IniT("array")));
+
+    size_t varIndex = 0;
+    IniString arrVal = arr.at(varIndex);
     ```
 
   - **Adding values ​​to an array**
@@ -199,9 +202,12 @@
     ```cpp
     std::map<IniString, IniString> dict;
     dict = IniDictParse(ini.get<IniString>(IniT("section"), IniT("section")));
+
+    IniString varKey = IniT("variable1");
+    IniString dictVal = dict[varKey];
     ```
 
-  - **Changing/Adding values ​​in thedictionary**
+  - **Changing/Adding values ​​in the dictionary**
 
     ```cpp
     dict[IniT("variable1")] = IniT("value1");

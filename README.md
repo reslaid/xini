@@ -1,5 +1,5 @@
 # </[XIni](https://github.com/reslaid/xini.git)>
-[![Version](https://img.shields.io/badge/version-0.2.1-gren.svg)](https://github.com/reslaid/xini.git) 
+[![Version](https://img.shields.io/badge/version-0.2.3-gren.svg)](https://github.com/reslaid/xini.git) 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4f58ee8f44234a3497ce62b646b1c899)](https://app.codacy.com/gh/reslaid/xini/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/reslaid/xini)](https://github.com/reslaid/xjson/commits)
 [![Last Commit](https://img.shields.io/github/last-commit/reslaid/xini/main)](https://github.com/reslaid/xini/commits)
@@ -17,24 +17,31 @@
 ## Docs
 
 - **Inclusion in the project**
+  
   - **Main header file**
   
-      ```cpp
-      #include "xini/parser.hpp"
-      ```
+    ```cpp
+    #include "xini/parser.hpp"
+    ```
 
   - **Header for working with parsers**
 
-      ```cpp
-      #include "xini/utils.hpp"
-      ```
+    ```cpp
+    #include "xini/utils.hpp"
+    ```
 
   - **Headers for parsing arrays and dictionaries**
 
-      ```cpp
-      #include "xini/array.hpp"
-      #include "xini/dict.hpp"
-      ```
+    ```cpp
+    #include "xini/array.hpp"
+    #include "xini/dict.hpp"
+    ```
+
+  - **Headers for parsing numeric, hexadecimal and binary values**
+
+    ```cpp
+    #include "xini/decimal.hpp"
+    ```
 
 - **Loading content**  
   - **Creating an instance of a class**
@@ -56,13 +63,27 @@
     }
     ```
 
+  - **Separators in arrays and dictionaries**
+    
+    *The keys in the dictionary are divided in this way:*
+
+      ```cpp
+      IniT("{key: value; key2: value2}");
+      ```
+
+    *Elements in arrays are divided this way:*
+
+      ```cpp
+      IniT("[value, value2]");
+      ```
+
   - **Loading from string**
 
     ```cpp
     IniParser ini;
 
     const IniChar* data;
-    data = IniT("[section]\nvar=value\ndict={variable1: value1, variable2: value2}\narray=[value1, value2]");
+    data = IniT("[section]\nvar=value\nhex=0xC8\ndict={variable1: value1; variable2: value2}\narray=[value1, value2]");
   
     ini << data;
     ```
@@ -121,7 +142,7 @@
   - **Confirmation of writing to a file**
 
     ```cpp
-    ini.commit(filename);
+    ini.commit();
     ```
 
   - **Getting sections and values ​​asstd::map**
@@ -150,9 +171,6 @@
     ```cpp
     std::vector<IniString> arr;
     arr = IniArrayParse(ini.get<IniString>(IniT("section"), IniT("array")));
-
-    size_t varIndex = 0;
-    IniString arrVal = arr.at(varIndex);
     ```
 
   - **Adding values ​​to an array**
@@ -202,12 +220,9 @@
     ```cpp
     std::map<IniString, IniString> dict;
     dict = IniDictParse(ini.get<IniString>(IniT("section"), IniT("section")));
-
-    IniString varKey = IniT("variable1");
-    IniString dictVal = dict[varKey];
     ```
 
-  - **Changing/Adding values ​​in the dictionary**
+  - **Changing/Adding values ​​in thedictionary**
 
     ```cpp
     dict[IniT("variable1")] = IniT("value1");
@@ -229,4 +244,10 @@
 
     ```cpp
     ini.set<IniString>(IniT("section"), IniT("dict"), IniDictToStr(dict));
+    ```
+
+  - **Parsing any digital value (decimal, hex, binary)**
+
+    ```cpp
+    long decHexValue = IniParseInt64(ini.get<IniString>(IniT("section"), IniT("hex")));
     ```

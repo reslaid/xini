@@ -3,6 +3,8 @@
 #include <vector>
 #include <sstream>
 
+#include "defs.h"
+
 /**
  * @brief Parse a string representing an array into a std::vector<std::string>.
  *

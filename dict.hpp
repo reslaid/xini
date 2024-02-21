@@ -4,6 +4,8 @@
 #include <sstream>
 #include <map>
 
+#include "defs.h"
+
 /**
  * @brief Parse a string representing a dictionary into a std::map<std::string, std::string>.
  *
@@ -50,26 +52,36 @@ std::string dictionaryToStringA(const std::map<std::string, std::string>& dictio
  */
 std::wstring dictionaryToStringW(const std::map<std::wstring, std::wstring>& dictionary);
 
+/**
+* @brief Separator character for INI format dictionaries.
+*/
+#define IniDictSplitCharA		','
+
+/**
+* @brief Separator character for INI format dictionaries.
+*/
+#define IniDictSplitCharW		IniT(',')
+
 #ifdef _UNICODE
 
 /**
  * @brief Macro defining the function name for parsing a Unicode string representing a dictionary.
  */
-# define IniDictParse        parseDictionaryW
+# define IniDictParse			parseDictionaryW
  /**
   * @brief Macro defining the function name for converting a dictionary to a Unicode string representation.
   */
-# define IniDictToStr        dictionaryToStringW
+# define IniDictToStr			dictionaryToStringW
 
 #else
 
 /**
  * @brief Macro defining the function name for parsing a string representing a dictionary.
  */
-# define IniDictParse        parseDictionaryA
+# define IniDictParse			parseDictionaryA
  /**
   * @brief Macro defining the function name for converting a dictionary to a string representation.
   */
-# define IniDictToStr        dictionaryToStringA
+# define IniDictToStr			dictionaryToStringA
 
 #endif

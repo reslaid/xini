@@ -187,6 +187,13 @@
     arr.insert(arr.begin() + INDEX, IniT("value"));
     ```
 
+  - **Получение значения из массива**
+
+    ```cpp
+    const int valueIndex = 0;
+    IniString value = arr.at(valueIndex);
+    ```
+
   - **Changing values ​​in an array**
 
     ```cpp
@@ -220,6 +227,12 @@
     ```cpp
     std::map<IniString, IniString> dict;
     dict = IniDictParse(ini.get<IniString>(IniT("section"), IniT("section")));
+    ```
+
+  - **Getting a value from a dictionary**
+
+    ```cpp
+    IniString valKey = dict[IniT("key")];
     ```
 
   - **Changing/Adding values ​​in thedictionary**

@@ -14,6 +14,94 @@
   git clone https://github.com/reslaid/xini.git
   ```
 
+## Examples
+
+  - **Parsing**
+
+    *Contents of the .ini file*
+
+    ```ini
+    ; example.ini
+    [fruits]
+    oranges=30
+    ```
+
+    *Parsing code from the library*
+
+    ```cpp
+    IniParser ini;
+
+    const IniChar* filename = IniT("example.ini");
+
+    if (!(ini >> filename)) {
+        std::cout << "Error opening file" << std::endl;
+        return -1;
+    }
+
+    long oranges;
+    oranges = IniParseInt64(
+        ini.get(IniT("fruits"), IniT("oranges"))
+    );
+
+    std::wcout << oranges << std::endl;
+
+    oranges += 100;
+
+    ini.set<long>(
+        IniT("fruits"), IniT("oranges"),
+        oranges
+    );
+
+    ini.commit(filename);
+    ```
+
+  - **Parsing dictionaries and data arrays**
+  
+    *Contents of the .ini file*
+
+      ```ini
+      ; example.ini
+      [response]
+      recv={status-code: 0xC8}
+      ```
+
+    *Parsing code from the library*
+
+      ```cpp
+      IniParser ini;
+
+      const IniChar* filename = IniT("example.ini");
+
+      if (!(ini >> filename)) {
+          std::cout << "Error opening file" << std::endl;
+          return -1;
+      }
+
+      IniString dict = ini.get(IniT("response"), IniT("recv"));
+
+      auto recv = IniDictParse(
+          dict
+      );
+
+      int statusCode = IniParseInt64(
+          recv[IniT("status-code")]
+      );
+
+      std::cout << "Status Code: " << statusCode << std::endl;
+
+      statusCode = 0x194;
+
+      recv[IniT("status-code")] = Int64ToHexString(statusCode);
+
+      dict = IniDictToStr(recv);
+
+      ini.set(IniT("response"), IniT("recv"), dict);
+
+      std::cout << "New Status Code: " << statusCode << std::endl;
+
+      ini.commit(filename);
+      ```
+
 ## Docs
 
 - **Inclusion in the project**

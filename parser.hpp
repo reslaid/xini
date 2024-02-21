@@ -8,6 +8,8 @@
 #include                    <sstream>
 #include                    <map>
 
+#include                    "defs.h"
+
 #pragma endregion
 
 #pragma region			macros
@@ -22,42 +24,6 @@
  */
 # define IniParser          IniParserW
 
-/**
- * @brief Macro that defines the string type used by IniParser based on whether the _UNICODE macro is defined.
- *
- * If _UNICODE is defined, IniString is defined as std::wstring, which is the wide-character string type.
- * Otherwise, IniString is defined as std::string, which is the ASCII-character string type.
- */
-# define IniString          std::wstring
-
-/**
- * @brief Macro that defines the character type used by IniParser based on whether the _UNICODE macro is defined.
- *
- * If _UNICODE is defined, IniChar is defined as wchar_t, which is the wide-character type.
- * Otherwise, IniChar is defined as char, which is the ASCII-character type.
- */
-# define IniChar            wchar_t
-
-/**
-* @brief Macro that converts the input string literal to a wide-character string literal if _UNICODE is defined.
-*
-* If _UNICODE is defined, the input string literal is prefixed with 'L', indicating it's a wide-character string literal.
-* Otherwise, the input string literal remains unchanged.
-*
-* @param x The input string literal.
-*/
-# define IniT(x)            L##x
-
-/**
- * @brief Macro that converts the input value to a string literal if _UNICODE is defined.
- *
- * If _UNICODE is defined, the input value is converted to a string literal using the '#' preprocessor operator.
- * Otherwise, the input value remains unchanged.
- *
- * @param x The input value.
- */
-# define IniStringify(x)    L#x
-
 #else
 
 /**
@@ -67,42 +33,6 @@
  * Otherwise, IniParser is defined as IniParserA, which is the ASCII-character version of IniParser.
  */
 # define IniParser          IniParserA
-
-/**
- * @brief Macro that defines the string type used by IniParser based on whether the _UNICODE macro is defined.
- *
- * If _UNICODE is defined, IniString is defined as std::wstring, which is the wide-character string type.
- * Otherwise, IniString is defined as std::string, which is the ASCII-character string type.
- */
-# define IniString          std::string
-
-/**
- * @brief Macro that defines the character type used by IniParser based on whether the _UNICODE macro is defined.
- *
- * If _UNICODE is defined, IniChar is defined as wchar_t, which is the wide-character type.
- * Otherwise, IniChar is defined as char, which is the ASCII-character type.
- */
-# define IniChar            char
-
-/**
-* @brief Macro that converts the input string literal to a wide-character string literal if _UNICODE is defined.
-*
-* If _UNICODE is defined, the input string literal is prefixed with 'L', indicating it's a wide-character string literal.
-* Otherwise, the input string literal remains unchanged.
-*
-* @param x The input string literal.
-*/
-# define IniT(x)            x
-
-/**
- * @brief Macro that converts the input value to a string literal if _UNICODE is defined.
- *
- * If _UNICODE is defined, the input value is converted to a string literal using the '#' preprocessor operator.
- * Otherwise, the input value remains unchanged.
- *
- * @param x The input value.
- */
-# define IniStringify(x)    #x
 
 #endif
 
@@ -173,6 +103,10 @@ private:
                 continue;
             }
         }
+    }
+
+    operator std::string() {
+
     }
 
     /**
@@ -296,7 +230,7 @@ public:
      * @param key The key of the key-value pair.
      * @return The value of the key-value pair, or an empty string if the key does not exist.
      */
-    template<typename __T__>
+    template<typename __T__ = IniString>
     __T__ get(const char* section, const char* var) {
         return static_cast<__T__>(this->getValue(section, var));
     }
@@ -310,7 +244,7 @@ public:
      * @param key The key of the key-value pair.
      * @param value The value to set.
      */
-    template <typename __T__>
+    template <typename __T__ = IniString>
     void set(const char* section, const char* var, const __T__& value) {
 
         std::ostringstream oss;
@@ -597,7 +531,7 @@ public:
      * @param key The key of the key-value pair.
      * @return The value of the key-value pair, or an empty string if the key does not exist.
      */
-    template<typename __T__>
+    template<typename __T__ = IniString>
     __T__ get(const wchar_t* section, const wchar_t* var) {
         return static_cast<__T__>(this->getValue(section, var));
     }
@@ -611,7 +545,7 @@ public:
      * @param key The key of the key-value pair.
      * @param value The value to set.
      */
-    template <typename __T__>
+    template <typename __T__ = IniString>
     void set(const wchar_t* section, const wchar_t* var, const __T__& value) {
 
         std::wstringstream oss;
